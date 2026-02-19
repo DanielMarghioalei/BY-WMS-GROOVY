@@ -1,0 +1,52 @@
+[[import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardOpenOption
+
+// --- File path ---
+def outputPath = "/opt/jda/wm/ukmilt4/les/labels/LABEL_TEST_DANIEL_005.out"
+
+// --- Label contents ---
+def labelText = """
+! 0 200 200 360 1
+PW 799
+TONE 0
+SPEED 3
+SETFF 0 5
+ON-FEED REPRINT
+NO-PACE
+POSTFEED 0
+GAP-SENSE
+T 5 1 41 1 Address: 
+T 5 1 145 1 PIRTEK PRESTON
+T 5 1 7 53 Order: 
+T 5 1 88 54 SOPRUK002859
+T 5 1 513 2 
+T 5 1 300 54 Carrier: 
+T 5 1 400 54 UPN
+T 5 1 550 55 Service lvl: 
+T 5 1 700 56 STD
+BT 7 0 0
+B 128 1 30 66 6 155 EPFP-06-06-06
+T 5 1 7 105 Part Number: 
+T 5 1 383 231 Source 
+T 5 1 383 279 Location: 
+BT 7 0 0
+B 128 1 30 68 500 237 PL01615
+T 5 1 12 248 BSPP SWIVEL FEMALE TEE
+T 5 1 396 170 Pick Qty: 
+T 5 1 506 172 2
+T 5 1 611 2 16/02/2026 11:19
+L 1 102 795 102 1
+FORM
+PRINT
+"""
+
+// --- Write file ---
+Files.write(
+    Paths.get(outputPath),
+    labelText.getBytes("UTF-8"),
+    StandardOpenOption.CREATE,
+    StandardOpenOption.TRUNCATE_EXISTING
+)
+
+return "${outputPath}"]];
