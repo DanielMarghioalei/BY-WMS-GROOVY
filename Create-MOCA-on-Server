@@ -1,0 +1,42 @@
+[[
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardOpenOption
+
+// --- File path ---
+def outputPath = "/opt/jda/wm/ukmilt4/les/src/cmdsrc/usrint/my file.mcmd"
+
+//actual command
+def part1 = """<command>
+  <name>"""
+def commandName = """user select one from dual"""
+def part2 = """</name>
+  <description>"""
+def part3 = """Command for retrieving one from Dual"""
+def part4 = """</description>
+  <type>Local Syntax</type>
+  <local-syntax>
+  <![CDATA[
+  """
+def CommandBody = """ [select 1 from dual]""" //this is the actual MOCA & SQL that runs on the command
+def part5 = """]"""
+def part6 = """]>
+  </local-syntax>
+  <argument name="column"  datatype="string">The name of the Column you are looking for</argument> 
+  <argument name="table"  datatype="string">The name of the Table you are looking for</argument>
+</command>""" //make sure your arguments are added as needed within this variable
+def myText =part + commandName + part2 + part3 + part4 + commandBody + part5 + part6
+// --- Write file ---
+Files.write(
+    Paths.get(outputPath),
+    myText.getBytes("UTF-8"),
+    StandardOpenOption.CREATE,
+    StandardOpenOption.TRUNCATE_EXISTING
+)
+
+return " ${outputPath}"
+]];
+/*Use the below to find your file and read it*/
+execute os command
+ where cmd = 'cat /opt/jda/wm/ukmilt4/les/src/cmdsrc/usrint/my file.mcmd'
+
